@@ -1,1 +1,1 @@
-# openshift-mule
+# place your mule app zip files here
