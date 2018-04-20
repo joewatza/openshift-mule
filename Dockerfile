@@ -8,9 +8,9 @@ LABEL io.k8s.description="Platform for building Mule Applications" \
       io.openshift.expose-services="8888:http" \
       io.openshift.tags="builder,mule,3.x,java"
 
-RUN cd ~ && wget https://repository-master.mulesoft.org/nexus/content/repositories/releases/org/mule/distributions/mule-standalone/3.8.0/mule-standalone-3.8.0.tar.gz
+RUN cd ~ && wget https://repository-master.mulesoft.org/nexus/content/repositories/releases/org/mule/distributions/mule-standalone/3.9.0/mule-standalone-3.9.0.tar.gz
 
-RUN cd /opt && tar xvzf ~/mule-standalone-3.8.0.tar.gz && rm ~/mule-standalone-3.8.0.tar.gz && ln -s /opt/mule-standalone-3.8.0 /opt/mule
+RUN cd /opt && tar xvzf ~/mule-standalone-3.9.0.tar.gz && rm ~/mule-standalone-3.9.0.tar.gz && ln -s /opt/mule-standalone-3.9.0 /opt/mule
 
 #add wrapper for standalone community ed
 # mac version RUN https://download.tanukisoftware.com/wrapper/3.5.35/wrapper-macosx-universal-64-3.5.35.tar.gz
