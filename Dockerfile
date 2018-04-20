@@ -13,10 +13,12 @@ RUN cd ~ && wget https://repository-master.mulesoft.org/nexus/content/repositori
 RUN cd /opt && tar xvzf ~/mule-standalone-3.8.0.tar.gz && rm ~/mule-standalone-3.8.0.tar.gz && ln -s /opt/mule-standalone-3.8.0 /opt/mule
 
 #add wrapper for standalone community ed
-RUN wget http://wrapper.tanukisoftware.com/download/3.5.30/wrapper-linux-armhf-32-3.5.30.tar.gz
-RUN tar -zxvf wrapper-linux-armhf-32-3.5.30.tar.gz wrapper-linux-armhf-32-3.5.30/conf/wrapper.conf
-RUN cp wrapper-linux-armhf-32-3.5.30/conf/wrapper.conf /opt/mule/lib/boot/
-RUN rm -r wrapper-linux-armhf-32-3.5.30
+# mac version RUN https://download.tanukisoftware.com/wrapper/3.5.35/wrapper-macosx-universal-64-3.5.35.tar.gz
+
+RUN wget https://download.tanukisoftware.com/wrapper/3.5.35/wrapper-linux-x86-64-3.5.35.tar.gz
+RUN tar -zxvf wrapper-linux-x86-64-3.5.35.tar.gz wrapper-linux-x86-64-3.5.35/conf/wrapper.conf
+RUN cp wrapper-linux-x86-64-3.5.35/conf/wrapper.conf /opt/mule/lib/boot/
+RUN rm -r wrapper-linux-x86-64-3.5.35
 
 # Define environment variables.
 ENV MULE_HOME /opt/mule
