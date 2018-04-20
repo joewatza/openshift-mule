@@ -22,7 +22,7 @@ VOLUME ["/opt/mule/logs", "/opt/mule/conf", "/opt/mule/apps", "/opt/mule/domains
 WORKDIR /opt/mule
 
 # Copy application files
-COPY ./target/*.zip $MULE_HOME/apps/
+COPY ./apps/*.zip $MULE_HOME/apps/
 
 CMD [ "/opt/mule/bin/mule" ]
 
