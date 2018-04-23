@@ -6,11 +6,12 @@ MAINTAINER joewatza@gmail.com
 LABEL io.k8s.description="Platform for building Mule Applications" \
       io.k8s.display-name="Mule POC Stand alone Edition" \
       io.openshift.expose-services="8888:http" \
-      io.openshift.tags="builder,mule,3.x,java"
+      io.openshift.tags="mule,java"
 
 RUN cd ~ && wget https://repository-master.mulesoft.org/nexus/content/repositories/releases/org/mule/distributions/mule-standalone/3.9.0/mule-standalone-3.9.0.tar.gz
 
-RUN cd /opt && tar xvzf ~/mule-standalone-3.9.0.tar.gz && rm ~/mule-standalone-3.9.0.tar.gz && ln -s /opt/mule-standalone-3.9.0 /opt/mule
+RUN cd /opt && tar xvzf ~/mule-standalone-3.9.0.tar.gz && rm ~/mule-standalone-3.9.0.tar.gz
+#RUN cd /opt && tar xvzf ~/mule-standalone-3.9.0.tar.gz && rm ~/mule-standalone-3.9.0.tar.gz && ln -s /opt/mule-standalone-3.9.0 /opt/mule
 
 #add wrapper for standalone community ed
 # mac version RUN https://download.tanukisoftware.com/wrapper/3.5.35/wrapper-macosx-universal-64-3.5.35.tar.gz
@@ -21,18 +22,18 @@ RUN cd /opt && tar xvzf ~/mule-standalone-3.9.0.tar.gz && rm ~/mule-standalone-3
 #RUN cd ~ && rm -r wrapper-linux-x86-64-3.5.35
 
 # Define environment variables.
-ENV MULE_HOME /opt/mule
+ENV MULE_HOME /opt/mule-standalone-3.9.0
 
 # Define mount points.
-VOLUME ["/opt/mule/logs", "/opt/mule/conf", "/opt/mule/apps", "/opt/mule/domains"]
+VOLUME ["/opt/mule-standalone-3.9.0/logs", "/opt/mule-standalone-3.9.0/conf", "/opt/mule-standalone-3.9.0/apps", "/opt/mule-standalone-3.9.0/domains"]
 
 # Define working directory.
-WORKDIR /opt/mule
+WORKDIR /opt/mule-standalone-3.9.0
 
 # Copy application files
 COPY ./apps/*.zip $MULE_HOME/apps/
 
-CMD [ "/opt/mule/bin/mule" ]
+CMD [ "/opt/mule-standalone-3.9.0/bin/mule" ]
 
 # Default http port
 EXPOSE 8888
